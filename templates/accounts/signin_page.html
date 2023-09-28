@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} 
+{% block title %} SignIn {% endblock title %} 
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/signin.css' %}" />
+
+<div class="container">
+  <div class="wrapper-left">
+    <img src="{% static 'images/logo.png' %}" alt="error" />
+    <h2>Login to the system</h2>
+    <p>Track and manage the attendance and working hours of employees</p>
+    <form class="form" method = "POST" action=".">
+      {% csrf_token %}
+      <div class="input-field">
+        <label for="">Email*</label>
+        <input type="email" id="email" name="email" placeholder="Email" />
+      </div>
+      <div class="input-field">
+        <label for="">Password*</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+        />
+      </div>
+      <div class="button">
+        <button type = "submit">Log In</button>
+      </div>
+      <div class="have-account">
+      </div>
+      {% include "message.html" %}
+    </form>
+  </div>
+  <div class="wrapper-right">
+    <img src="{% static 'images/logo2.jpg' %}" />
+    <h2>Respect for time is the foundation of an efficient <br/> and dependable time attendance system</h2>
+  </div>
+</div>
+
+{% endblock content %}

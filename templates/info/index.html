@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Report{% endblock title %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/info.css' %}" />
+{% include "navebar.html" %}
+<div class = "container">
+    <div class = "wrapper">
+        <h1>Report Page</h1>
+        <form action="{% url 'info_index' %}" method="POST">
+            {% csrf_token %}
+            <div class="search">
+                <input type="month" name="search" />
+                <input type="number" name="civil"  placeholder="Civil Id"/>
+                <button class="submit">Search</button>
+            </div>
+        </form>
+        <div class="result">
+            <div class="error">
+                {% if existing_user %}
+            </div>
+            <div dir = "rtl" class = "table-container">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>التاريخ</th>
+                            <th>الأسم</th>
+                            <th>القسم / الأدارة</th>
+                            <th>وقت الدخول</th>
+                            <th>مدة التاخير الصباحي</th>
+
+
+                            <th>الأستئذان الأول</th>
+                            <th>الأستئذان الثاني</th>
+                            <th>الأستئذان الثالث</th>
+                            <th>مدةالأستئذان وقت الدوام</th>
+
+
+
+                            <th>وقت الخروج المتوقع</th>
+                            <th>وقت الخروج النهائي</th>
+
+                            {% comment %} <th>مدة الأستئذان وقت الدوام</th> {% endcomment %}
+
+                            <th>مدة الخروج المبكر</th>
+                            <th>مجموع ساعات الأستئذان</th>
+                            <th>مدة تواجد الموظف في العمل</th>
+                            <th>الحالة</th>
+                            <th></th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                        {% for employee in employee_today %}
+                        <tr>
+                            <td>{{employee.created_date.date|date:"Y-m"}}</td>
+                            <td>{{employee.name}}</td>
+                            <td>{{employee.department}}</td>
+                            <td>{{employee.enterance_time|time:"H:i"}}</td>
+                            <td>{{employee.calculate_morning_delay_time}}</td>
+
+                            <td>{{employee.permission_leaving_time|time:"H:i"}}<br/>{{employee.permission_entering_time|time:"H:i"}}</td>
+                            <td>{{employee.permission_leaving_time_2|time:"H:i"}}<br/>{{employee.permission_entering_time_2|time:"H:i"}}</td>
+                            <td>{{employee.permission_leaving_time_3|time:"H:i"}}<br/>{{employee.permission_entering_time_3|time:"H:i"}}</td>
+                            <td id="perm-duration-day">{{employee.permission_duration_for_month_report}}</td>
+
+
+
+
+                            <td>{{employee.expected_leaving_time}}</td>
+                            <td>{{employee.final_leaving_time|time:"H:i"}}</td>
+
+                            {% comment %} <td>{{employee.permission_duration}}</td> {% endcomment %}
+
+                            <td>{{employee.early_leaving_time}}</td>
+                            <td>{{employee.whole_permission_duration}}</td>
+                            <td>{{employee.staying_in_job_duration}}</td>
+                            <td>{{employee.staying_condition}}</td>
+                            <td><a href="{% url 'permissions_update' employee.id %}">تفاصيل</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+            {% include "message.html" %}
+        </div>
+    </div>
+    <script src="{% static 'javascript/info.js' %}"></script>
+</div>
+{% endblock content %}

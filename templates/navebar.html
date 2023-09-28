@@ -1,0 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/nav.css' %}" />
+
+<div class="nav-container">
+  <h1>Time Scheduale</h1>
+  <div class="user">
+    {% if user.is_authenticated  %}
+    <p>Welcome, {{user.email}}</p>
+    {% endif %}
+    <a href="{% url 'logout_page' %}">Logout</a>
+  </div>
+</div>

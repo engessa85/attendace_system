@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Update{% endblock title %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/update.css' %}" />
+{% include "navebar.html" %}
+<div class="container">
+    <h2>تحديث بيانات المستخدم</h1>
+    <h3>{{name}} - {{created_date}}</h3>
+    <form method="POST" action="{% url "managment_update" id %}" dir="rtl">
+        {% csrf_token %}
+        <div class="row">
+            <div class="input-item">
+                <label for="enter-time">وقت الدخول</label>
+                <input type="text" name="enter-time" id="enter-time" value={{enterance_time}} />
+            </div>
+            <div class="input-item">
+                <label for="final-leave-time">وقت الخروج النهائي</label>
+                <input type="text" name="final-leave-time" id="final-leave-time" value={{final_leaving_time}} />
+            </div>
+       </div>
+       <div class="permission-lable">
+        <p>الأذن الأول</p>
+       </div>
+       
+       <div class="row">
+        <div class="input-item">
+            <label for="permission-leave-time-1">وقت الخروج</label>
+            <input type="text" name="permission-leave-time-1" id="permission-leave-time-1" value={{permission_leaving_time}} />
+        </div>
+        <div class="input-item">
+            <label for="permission-enter-time-1">وقت الدخول</label>
+            <input type="text" name="permission-enter-time-1" id="permission-enter-time-1" value={{permission_entering_time}} />
+        </div>
+    </div>
+
+    <div class="permission-lable">
+        <p>الأذن الثاني</p>
+    </div>
+
+    <div class="row">
+        <div class="input-item">
+            <label for="permission-leave-time-2">وقت الخروج</label>
+            <input type="text" name="permission-leave-time-2" id="permission-leave-time-2" value={{permission_leaving_time_2}} />
+        </div>
+        <div class="input-item">
+            <label for="permission-enter-time-2">وقت الدخول</label>
+            <input type="text" name="permission-enter-time-2" id="permission-enter-time-2" value={{permission_entering_time_2}} />
+        </div>
+    </div>
+
+    <div class="permission-lable">
+        <p>الأذن الثالث</p>
+    </div>
+
+    <div class="row">
+        <div class="input-item">
+            <label for="permission-leave-time-3">وقت الخروج</label>
+            <input type="text" name="permission-leave-time-3" id="permission-leave-time-3" value={{permission_leaving_time_3}} />
+        </div>
+        <div class="input-item">
+            <label for="permission-enter-time-3">وقت الدخول</label>
+            <input type="text" name="permission-enter-time-3" id="permission-enter-time-3" value={{permission_entering_time_3}} />
+        </div>
+    </div>
+
+
+    <div class="button">
+        <button type="submit">تحديث</button>
+    </div>
+    </form>
+</div>
+{% endblock content %}

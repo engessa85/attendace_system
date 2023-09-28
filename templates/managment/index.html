@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Managment{% endblock title %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/managment.css' %}" />
+{% include "navebar.html" %}
+<div class = "container">
+    <div class="wrapper">
+        <h1>Time managment</h1>
+    {% if employee_today|length == 0 %}
+
+    <form method = "POST" action = ".">
+        {% csrf_token %}
+        <button type = "submit">Create New Sheet</button>
+    </form>
+
+    {% else %}
+
+    <h3>{{date}}</h3>
+
+    <div dir = "rtl" class = "table-container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>الأسم</th>
+                    <th>القسم / الأدارة</th>
+                    <th>وقت الدخول</th>
+                    <th>مدة التاخير الصباحي</th>
+                    <th>اوقات الأستئذان</th>
+                    <th>وقت الخروج المتوقع</th>
+                    <th>وقت الخروج النهائي</th>
+                    <th>مدة الأستئذان وقت الدوام</th>
+                    <th>مدة الخروج المبكر</th>
+                    <th>مجموع ساعات الأستئذان</th>
+                    <th>مدة تواجد الموظف في العمل</th>
+                    <th>الحالة</th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employee_today %}
+                <tr>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.department}}</td>
+                    <td>{{employee.enterance_time|time:"H:i"}}</td>
+                    <td>{{employee.calculate_morning_delay_time}}</td>
+                    <td><button class="look" employeeID = {{employee.id}}>اطلاع</button></td>
+                    <td>{{employee.expected_leaving_time}}</td>
+                    <td>{{employee.final_leaving_time|time:"H:i"}}</td>
+                    <td>{{employee.permission_duration}}</td>
+                    <td>{{employee.early_leaving_time}}</td>
+                    <td>{{employee.whole_permission_duration}}</td>
+                    <td>{{employee.staying_in_job_duration}}</td>
+                    <td>{{employee.staying_condition}}</td>
+                    <td><a href="{% url 'managment_update' employee.id %}">تحديث</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+    </div>
+
+    <div class="model">
+        <h3>أوقات الاستئذان</h3>
+        <div class="model-row">
+            <div><p1>وقت الدخول</p1><span> : </span><span class="enter-time-1">00:00</span></div>
+            <div><p1>وقت الخروج</p1><span> : </span><span class="leave-time-1">00:00</span></div>
+        </div>
+
+        <div class="model-row">
+            <div><p1>وقت الدخول</p1><span> : </span><span class="enter-time-2">00:00</span></div>
+            <div><p1>وقت الخروج</p1><span> : </span><span class="leave-time-2">00:00</span></div>
+        </div>
+
+        <div class="model-row">
+            <div><p1>وقت الدخول</p1><span> : </span><span class="enter-time-3">00:00</span></div>
+            <div><p1>وقت الخروج</p1><span> : </span><span class="leave-time-3">00:00</span></div>
+        </div>
+        
+        <button class="model-close">اغلاق</button>
+    </div>
+
+    <script src="{% static 'javascript/management.js' %}"></script>
+</div>
+
+
+{% endblock content %}

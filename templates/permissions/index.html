@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Permissions{% endblock title %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/permissions.css' %}" />
+{% include "navebar.html" %}
+<div class = "container">
+    <div class = "wrapper">
+        <h1>Permissions Page</h1>
+        <form action="{% url 'permissions_index' %}" method="POST">
+            {% csrf_token %}
+            <div class="search">
+                <input type="date" name="search" />
+                <button class="submit">Search</button>
+            </div>
+        </form>
+        <div class="result">
+            <div class="error">
+                {% if existing_user %}
+            </div>
+            <div dir = "rtl" class = "table-container">
+                <table class="styled-table">
+                    <thead>
+                        <tr>
+                            <th>الأسم</th>
+                            <th>القسم / الأدارة</th>
+                            <th>وقت الدخول</th>
+                            <th>مدة التاخير الصباحي</th>
+                            <th>وقت الخروج المتوقع</th>
+                            <th>وقت الخروج النهائي</th>
+                            <th>مدة الأستئذان وقت الدوام</th>
+                            <th>مدة الخروج المبكر</th>
+                            <th>مجموع ساعات الأستئذان</th>
+                            <th>مدة تواجد الموظف في العمل</th>
+                            <th>الحالة</th>
+                            <th></th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for employee in employee_today %}
+                        <tr>
+                            <td>{{employee.name}}</td>
+                            <td>{{employee.department}}</td>
+                            <td>{{employee.enterance_time|time:"H:i"}}</td>
+                            <td>{{employee.calculate_morning_delay_time}}</td>
+                            <td>{{employee.expected_leaving_time}}</td>
+                            <td>{{employee.final_leaving_time|time:"H:i"}}</td>
+                            <td>{{employee.permission_duration}}</td>
+                            <td>{{employee.early_leaving_time}}</td>
+                            <td>{{employee.whole_permission_duration}}</td>
+                            <td>{{employee.staying_in_job_duration}}</td>
+                            <td>{{employee.staying_condition}}</td>
+                            <td><a href="{% url 'permissions_update' employee.id %}">تحديث</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endif %}
+            {% include "message.html" %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
