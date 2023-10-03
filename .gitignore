@@ -1,0 +1,51 @@
+# Ignore virtual environment directories
+venv/
+env/
+
+# Ignore database files
+*.sqlite3
+db.sqlite3
+
+# Ignore compiled Python files and cache
+*.pyc
+__pycache__/
+
+# Ignore local settings and secrets
+/settings/local.py
+/settings/secret_key.py
+/settings/*.secret
+
+# Ignore logs and temporary files
+/logs/
+/tmp/
+
+# Ignore IDE/Editor specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Ignore user-specific files
+/user/
+
+# Ignore static files and media if using a CDN
+/static/
+/media/
+
+# Ignore dependency management files
+requirements.txt
+/node_modules/
+
+# Ignore Django migration files
+/migrations/
+
+# Ignore IDE/Editor configuration files
+.editorconfig
+.gitattributes
+
+# Ignore Python log files
+*.log
+
+# Miscellaneous files
+.env
+.DS_Store  # macOS system file

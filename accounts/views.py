@@ -63,7 +63,7 @@ class SignInView(View):
             if User.is_data:
                 return redirect("managment_index")
             elif User.is_info:
-                return redirect("info_index")
+                return redirect("MainInfoView")
             elif User.is_permit:
                 return redirect("permissions_index")
             else:

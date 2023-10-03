@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from employee.models import Employee
+from employee.models import Employee, EmployeeEssentialInfo
 from datetime import date,datetime
 from django.http import JsonResponse
 
@@ -27,8 +27,8 @@ class IndexView(View):
 
     
     def post(self, request):
-        for item in user_info:
-            Employee.objects.create(created_date = today , name = item['name'], civil_id = item['civil_id'])
+        for emp in EmployeeEssentialInfo.objects.all():
+            Employee.objects.create(created_date = today , name = emp.name, civil_id = emp.civil_id, department = emp.department)
     
         return redirect("managment_index")
     

@@ -31,9 +31,9 @@ class IndexView(View):
                     employee_today.append(employee)
                     existing_user = True
             if not existing_user:
-                messages.error(request, "Employees are not existed in this date !!!")
+                messages.error(request, "الموظفين غير موجودين في هذا التاريخ")
         else:
-            messages.error(request, "Invalid Date !!!")
+            messages.error(request, "تاريخ غير صالح")
         context["existing_user"] = existing_user
         context["employee_today"] = employee_today
         return render(request, "permissions/index.html", context)
@@ -109,6 +109,6 @@ class UpdateView(View):
         employee.is_permit_official_3 = bool(get_official3)
 
         employee.save()
-        messages.success(request, "Permissions are updated successfully")
+        messages.success(request, "تم تحديث الأذونات بنجاح")
 
         return redirect("permissions_index")

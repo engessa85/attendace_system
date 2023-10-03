@@ -10,10 +10,18 @@ custom_day = today + timedelta(days=1)
 
 # Create your models here.
 
+class EmployeeEssentialInfo(models.Model):
+    name = models.CharField(max_length=300, null=True, blank=True)
+    civil_id = models.CharField(max_length=300, null=True, blank=True ,unique=True)
+    department = models.CharField(max_length=300, null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
 class Employee(models.Model):
     name = models.CharField(max_length=300, null=True, blank=True)
     civil_id = models.CharField(max_length=300, null=True, blank=True)
-    department = models.CharField(default="ELectrical Dep",max_length=300, null=True, blank=True)
+    department = models.CharField(max_length=300, null=True, blank=True)
     enterance_time = models.TimeField(default=time(0,0) , null=True, blank=True)
 
     permission_leaving_time = models.TimeField(default=time(0,0), null=True, blank=True)
@@ -169,6 +177,26 @@ class Employee(models.Model):
         format_string = "%H:%M"
         delay_morning= datetime.strptime(self.calculate_morning_delay_time(), format_string).time()
         permission_duration = datetime.strptime(self.permission_duration(), format_string).time()
+        early_leaving = datetime.strptime(self.early_leaving_time(), format_string).time()
+
+        total_seconds = delay_morning.hour * 3600 + delay_morning.minute * 60 + delay_morning.second + \
+                permission_duration.hour * 3600 + permission_duration.minute * 60 + permission_duration.second + \
+                early_leaving.hour * 3600 + early_leaving.minute * 60 + early_leaving.second
+
+        hours, remainder = divmod(total_seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
+        sum_time = timedelta(hours=hours, minutes=minutes, seconds=seconds)
+        
+        result_time = "{:02}:{:02}".format(sum_time.seconds // 3600, (sum_time.seconds // 60) % 60)
+
+        return result_time
+    
+
+    def whole_permission_duration_for_month(self):
+
+        format_string = "%H:%M"
+        delay_morning= datetime.strptime(self.calculate_morning_delay_time(), format_string).time()
+        permission_duration = datetime.strptime(self.permission_duration_for_month_report(), format_string).time()
         early_leaving = datetime.strptime(self.early_leaving_time(), format_string).time()
 
         total_seconds = delay_morning.hour * 3600 + delay_morning.minute * 60 + delay_morning.second + \

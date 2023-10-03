@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Main{% endblock title %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/maininfo.css' %}" />
+
+
+{% include "navebar.html" %}
+<div class = "container">
+    <div>
+        <h1>التقارير</h1>
+    </div>
+
+    <div class = "reports">
+        <a class = "report-item" href = "{% url 'month-info' %}">التقرير الشهري</a>
+        <a class = "report-item" href = "{% url 'day-info' %}">التقرير اليومي</a>
+    </div>
+    
+</div>
+{% endblock content %}
