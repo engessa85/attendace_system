@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
     "accounts.apps.AccountsConfig",
     "managment.apps.ManagmentConfig",
     "info.apps.InfoConfig",
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
@@ -150,3 +152,5 @@ USE_TZ = True
 
 # TIME_ZONE = 'UTC'
 # USE_TZ = True
+
+CORS_ORIGIN_ALLOW_ALL = True

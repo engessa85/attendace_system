@@ -16,7 +16,8 @@ const enter_time_3 = document.querySelector(".enter-time-3")
 
 
 const fetchingData = async (employeeId) => {
-  const url = `http://127.0.0.1:8000/managment/get-permissions/${employeeId}`;
+
+  const url = `https://yehia85.pythonanywhere.com/managment/get-permissions/${employeeId}`;
   response = await fetch(url);
   let data = response.json();
   return data;
@@ -37,7 +38,7 @@ const open_model = async (event) => {
 
   leave_time_3.textContent = data.permission_leaving_time_3
   enter_time_3.textContent = data.permission_entering_time_3
-  
+
 };
 
 const close_model = () => {
