@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Crete+Round&family=Signika+Negative:wght@300;500;700&display=swap");
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Crete Round", serif;
+  font-family: "Signika Negative", sans-serif;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  width: 100%;
+  height: calc(100vh - 60px);
+}
+
+.container .reports {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.reports .report-item {
+  width: 250px;
+  height: 100px;
+  background-color: rgba(49, 108, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 22px;
+}
+
