@@ -1,0 +1,244 @@
+@import url("https://fonts.googleapis.com/css2?family=Crete+Round&family=Signika+Negative:wght@300;500;700&display=swap");
+
+body {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Crete Round", serif;
+  font-family: "Signika Negative", sans-serif;
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+.container .wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+}
+
+.wrapper .intro {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.wrapper .result {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  
+
+}
+
+.intro .submit-pdf {
+  color: white;
+  background-color: #009879;
+  border: none;
+  border-radius: 6px;
+  width: 120px;
+  height: 43.6px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.wrapper .search {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.search input {
+  height: 40px;
+  border-radius: 6px;
+  outline: none;
+  border: 0.9px solid gray;
+  color: black;
+  font-weight: 700;
+  padding-left: 10px;
+  opacity: 0.7;
+  width: 250px;
+}
+
+.search button {
+  color: white;
+  background-color: rgba(49, 108, 255, 255);
+  border: none;
+  border-radius: 6px;
+  width: 80px;
+  cursor: pointer;
+}
+
+.search button:hover {
+  opacity: 0.7;
+}
+
+.wrapper .user-info {
+  display: flex;
+  width: 40%;
+  justify-content: space-between;
+  align-items: center !important;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: -1px 8px 11px -2px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: -1px 8px 11px -2px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: -1px 8px 11px -2px rgba(0, 0, 0, 0.5);
+  min-width: 500px;
+}
+
+
+
+.user-info .item-inside {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.wrapper .result {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper .result .error {
+  width: 400px;
+}
+
+.table-container {
+  margin: 0 40px;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+  background-color: rgba(49, 108, 255, 255);
+  color: #ffffff;
+  text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 10px 10px;
+  text-align: center;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #dddddd;
+  background-color: rgb(190, 189, 189);
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid rgba(49, 108, 255, 255);
+}
+
+.styled-table tbody tr.active-row {
+  font-weight: bold;
+  color: #009879;
+}
+
+button {
+  background-color: rgba(49, 108, 255, 255);
+  color: #f5f5f5;
+  width: 80px;
+  border-radius: 6px;
+  padding: 5px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+}
+
+button:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
+}
+
+a {
+  background-color: rgba(49, 108, 255, 255);
+  color: #f5f5f5;
+  width: 80px;
+  border-radius: 6px;
+  padding: 5px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.6;
+  transition: all 0.3s ease-in-out;
+}
+
+.model {
+  background-color: rgba(49, 108, 255, 255);
+  opacity: 0.9;
+  width: 40%;
+  height: 40%;
+  border-radius: 8px;
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 162px;
+  left: 468px;
+  color: white;
+  z-index: 999;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+}
+
+.model .model-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
+}
+
+.model button {
+  width: 100px;
+  height: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  color: rgba(49, 108, 255, 255);
+  text-align: center;
+  padding-bottom: 20px;
+}
